@@ -1,4 +1,5 @@
-select
+create view v_salesorderheader as
+	select
 	SalesOrderID,          
 	RevisionNumber,        
 	OrderDate,             
@@ -29,10 +30,10 @@ select
 	st.group,
 	so.ModifiedDate          
 from salesorderheader so left join salesperson sp on sp.SalesPersonID = so.SalesPersonID
-join left salesterritory st ON st.TerritoryID = sp.TerritoryID;
+left join salesterritory st ON st.TerritoryID = sp.TerritoryID;
 
 
-
+create view v_salesorderdetails as
 select          
 	SalesOrderDetailID,    
 	SalesOrderID,
@@ -55,15 +56,13 @@ on sod.SpecialOfferID = so.SpecialOfferID;
 
 
 
-
+create view v_customer as 
 select cus.CustomerID,cus.AccountNumber, cus.CustomerType, ind.Demographics, con.NameStyle, con.Title, con.FirstName,             
 con.MiddleName,con.LastName, con.Suffix, con.EmailAddress, con.EmailPromotion, con.Phone, con.AdditionalContactInfo,  
 cus.TerritoryID,t.name territoryName, t.countryregioncode, t.group, con.ModifiedDate from customer cus
 join individual ind on ind.CustomerID = cus.CustomerID join contact con on con.ContactID = ind.ContactID join salesterritory t on
 cus.TerritoryID = t.TerritoryID
-
 union	
-	
 select cus.CustomerID, cus.AccountNumber, cus.CustomerType, st.Demographics, con.NameStyle, con.Title, st.Name, con.MiddleName,            
 con.LastName,con.Suffix,con.EmailAddress,con.EmailPromotion, con.Phone, con.AdditionalContactInfo, cus.TerritoryID, t.name territoryName, 
 t.countryregioncode, t.group, cus.ModifiedDate from store st
