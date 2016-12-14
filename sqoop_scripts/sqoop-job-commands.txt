@@ -1,0 +1,30 @@
+# sqoop script to create a new job to load customer data from rdbms to hdfs
+sqoop-job --create loadcustomers -- import  --connect jdbc:mysql://quickstart:3306/adventureworks --username root \
+--query "" \ --as-parquetfile
+--target-dir /user/cloudera/output/stores/sqoop/customers  \
+--split-by payment_id --num-mappers 1 --check-column ModifiedDate --incremental lastmodified \
+--password cloudera
+
+
+
+
+# sqoop script to create a new job to load salesorderheader data from rdbms to hdfs
+sqoop-job --create loadsalesorderheader -- import  --connect jdbc:mysql://quickstart:3306/adventureworks --username root \
+--query "" \ --as-parquetfile
+--target-dir /user/cloudera/output/stores/sqoop/salesorderheader  \
+--split-by payment_id --num-mappers 1 --check-column SalesOrderID --incremental append \
+--password cloudera
+
+
+
+# sqoop script to create a new job to load salesorderdetails data from rdbms to hdfs
+sqoop-job --create loadsalesorderdetail -- import  --connect jdbc:mysql://quickstart:3306/adventureworks --username root \
+--query "" \ --as-parquetfile
+--target-dir /user/cloudera/output/stores/sqoop/salesorderdetails  \
+--split-by payment_id --num-mappers 1 --check-column SalesOrderDetailID --incremental append \
+--password cloudera
+
+
+
+#to execute any of the jobs 
+ sqoop-job --exec jobname
