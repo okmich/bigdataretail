@@ -53,6 +53,37 @@ from salesorderdetail sod join specialoffer so
 on sod.SpecialOfferID = so.SpecialOfferID;
 
 
+create view v_product as
+select p.productId,
+	p.name,
+	productnumber,
+	makeflag,
+	finishedgoodsflag,
+	color,
+	safetystocklevel,
+	reorderpoint,
+	standardcost,
+	listprice,
+	size,
+	sizeunitmeasurecode,
+	weightunitmeasurecode,
+	weight,
+	daystomanufacture,
+	productline,
+	class,
+	style,
+	sellstartdate,
+	sellenddate,
+	discontinueddate,
+	ps.name productsubcategory,
+	pc.name productcategory,
+	pm.name producemodel,
+	pm.catalogdescription,
+	pm.instructions,
+	p.modifieddate
+from product p left join productsubcategory ps on p.productsubcategoryid = ps.productsubcategoryid
+left join productcategory pc on ps.productcategoryid = pc.productcategoryid
+left join productmodel pm on p.productmodelid = pm.productmodelid;
 
 
 
