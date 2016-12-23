@@ -54,6 +54,60 @@ create external table customer (
 	group  string,
 	ModifiedDate  string
 	)
-row format delimited
-fields terminated by ','
+stored as parquet
 location '/user/cloudera/output/stores/sqoop/customers';
+
+
+create external table salesorderheader (
+	salesorderid int,          
+	revisionnumber smallint,        
+	orderdate bigint,             
+	duedate bigint,               
+	shipdate bigint,              
+	status smallint,                
+	onlineorderflag boolean,       
+	salesordernumber string,      
+	purchaseordernumber string,   
+	accountnumber string,         
+	customerid int,            
+	contactid int,           
+	billtoaddressid int,       
+	shiptoaddressid int,       
+	shipmethodid int,          
+	creditcardid int,          
+	creditcardapprovalcode string,
+	currencyrateid int,        
+	subtotal double,              
+	taxamt double,                
+	freight double,               
+	totaldue double,              
+	comment string,              
+	salespersonid int, 
+	territoryid int,
+	territory string,
+	countryregioncode string,
+	group string,
+	modifieddate bigint     
+)
+stored as parquet
+location '/user/cloudera/output/stores/sqoop/salesorderheader';   
+
+
+create external table salesorderdetails(
+	salesorderdetailid int,    
+	salesorderid int,
+	carriertrackingnumber string, 
+	orderqty int,              
+	productid int,             
+	unitprice double,             
+	unitpricediscount double,     
+	linetotal double,       
+	specialofferid tinyint, 
+	description string,
+	discountpct double,
+	type string,
+	modifieddate string 
+)
+stored as parquet
+location '/user/cloudera/output/stores/sqoop/salesorderdetails';
+
