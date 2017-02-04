@@ -1,4 +1,6 @@
-create database central_store;
+create database store;
+
+use store;
 
 create external table product (
 	productId int,
@@ -30,7 +32,7 @@ create external table product (
 	modifieddate bigint
 )
 stored as parquet
-location '/user/cloudera/output/stores/sqoop/products';
+location '/user/cloudera/bigretail/output/stores/sqoop/products';
 
 
 create external table customer (
@@ -55,7 +57,7 @@ create external table customer (
 	ModifiedDate  string
 	)
 stored as parquet
-location '/user/cloudera/output/stores/sqoop/customers';
+location '/user/cloudera/bigretail/output/stores/sqoop/customers';
 
 
 create external table salesorderheader (
@@ -87,10 +89,15 @@ create external table salesorderheader (
 	territory string,
 	countryregioncode string,
 	group string,
+	fromcurrencycode string,
+	tocurrencycode string,
+	averagerate double,
+	endofdayrate double,
+	store string,
 	modifieddate bigint     
 )
 stored as parquet
-location '/user/cloudera/output/stores/sqoop/salesorderheader';   
+location '/user/cloudera/bigretail/output/stores/sqoop/salesorderheader';   
 
 
 create external table salesorderdetails(
@@ -109,5 +116,5 @@ create external table salesorderdetails(
 	modifieddate string 
 )
 stored as parquet
-location '/user/cloudera/output/stores/sqoop/salesorderdetails';
+location '/user/cloudera/bigretail/output/stores/sqoop/salesorderdetails';
 
