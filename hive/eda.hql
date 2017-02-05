@@ -53,8 +53,8 @@ create external table customer (
 	TerritoryID int,
 	territoryName  string,
 	countryregioncode  string,
-	group  string,
-	ModifiedDate  string
+	`group`  string,
+	ModifiedDate bigint
 	)
 stored as parquet
 location '/user/cloudera/bigretail/output/stores/sqoop/customers';

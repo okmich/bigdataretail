@@ -1,0 +1,56 @@
+<workflow-app name="dwh-wf" xmlns="uri:oozie:workflow:0.1">
+    <start to="sqoopCustomerAction"/>
+
+    <action name="sqoopCustomerAction">
+        <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${namenode}</name-node>
+            <arg>job</arg>
+            <arg>--exec</arg>
+            <arg>loadcustomers</arg>
+        </sqoop>
+        <ok to="sqoopProductAction"/>
+        <error to="errorOccured"/>
+    </action>
+
+    <action name="sqoopProductAction">
+        <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${namenode}</name-node>
+            <arg>job</arg>
+            <arg>--exec</arg>
+            <arg>loadproducts</arg>
+        </sqoop>
+        <ok to="sqoopSalesOrderHeaderAction"/>
+        <error to="errorOccured"/>
+    </action>
+
+    <action name="sqoopSalesOrderHeaderAction">
+        <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${namenode}</name-node>
+            <arg>job</arg>
+            <arg>--exec</arg>
+            <arg>loadsalesorderheader</arg>
+        </sqoop>
+        <ok to="sqoopSalesOrderDetailAction"/>
+        <error to="errorOccured"/>
+    </action>
+
+    <action name="sqoopSalesOrderDetailAction">
+        <sqoop xmlns="uri:oozie:sqoop-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${namenode}</name-node>
+            <arg>job</arg>
+            <arg>--exec</arg>
+            <arg>loadsalesorderdetail</arg>
+        </sqoop>
+        <ok to="jobDone"/>
+        <error to="errorOccured"/>
+    </action>
+
+    <kill name="errorOccured">
+        <message>wf:lastErrorNode()</message>
+    </kill>
+     <end name="jobDone"/>
+</workflow-app>
