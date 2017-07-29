@@ -1,0 +1,8 @@
+Agenda
+=======================
+- Hive high-level recap 
+- Data ingestion/transformation using Sqoop, Spark and Hive 
+	
+- File formats and query performance 
+- Writing aggregate queries using UDAFs. 
+- Aggregation using windowing functions.

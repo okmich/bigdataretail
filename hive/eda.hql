@@ -118,3 +118,14 @@ create external table salesorderdetails(
 stored as parquet
 location '/user/cloudera/bigretail/output/stores/sqoop/salesorderdetails';
 
+
+create external table creditcard (
+	creditcardid int,
+	cardtype string,
+	cardnumber string,
+	expmonth int,
+	expyear int,
+	modifieddate bigint	
+)
+stored as parquet
+location '/user/cloudera/bigretail/output/stores/sqoop/creditcard';
