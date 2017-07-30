@@ -34,12 +34,10 @@ create view v_salesorderheader as
 	cr.toCurrencyCode,
 	cr.AverageRate,
 	cr.EndOfDayRate,
-	str.name store,
 	so.ModifiedDate         
 from salesorderheader so left join salesperson sp on sp.SalesPersonID = so.SalesPersonID
 left join salesterritory st ON st.TerritoryID = sp.TerritoryID
 left join currencyrate cr on cr.CurrencyRateID = so.CurrencyRateID 
-left join store str on str.SalesPersonID = sp.SalesPersonID;
 
 
 create view v_salesorderdetails as

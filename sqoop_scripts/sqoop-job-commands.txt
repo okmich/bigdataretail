@@ -38,5 +38,5 @@ sqoop job --create loadcreditcard -- import --connect jdbc:mysql://quickstart:33
 
 
 #to execute any of the jobs 
-sqoop-job --exec loadsalesorderdetail
+sqoop-job --exec loadsalesorderheader
 

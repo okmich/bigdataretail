@@ -4,3 +4,8 @@ group by productid, discountpct) v
 where minimum <> maximum
 order by 1
 
+---
+select d.*, t.total_due from customer_demo d 
+join 
+(select customerid, sum(totaldue) total_due from salesorderheader group by customerid) t 
+on d.customerid = t.customerid

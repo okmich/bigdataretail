@@ -93,7 +93,6 @@ create external table salesorderheader (
 	tocurrencycode string,
 	averagerate double,
 	endofdayrate double,
-	store string,
 	modifieddate bigint     
 )
 stored as parquet
