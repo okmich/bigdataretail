@@ -1,0 +1,30 @@
+
+	Group by 
+	Grouping set
+	Grouping ID
+	Rollup
+	Cube
+
+	Over()									
+		Order by
+		partition by
+			row between
+			range between
+
+	Analytic function
+
+
+	Aggregate function
+
+
+Products sales
+Time product sales
+
+
+Customer and total sales
+
+Rank
+	Customer Purchase Year to date
+	Customer over income level year to date
+
+Cluster Customer into n group by income level and gender

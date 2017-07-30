@@ -5,4 +5,5 @@ Agenda
 - File formats and query performance 
 
 - Writing aggregate queries using UDAFs. 
+		group by
 - Aggregation using windowing functions.
